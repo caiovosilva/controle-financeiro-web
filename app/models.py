@@ -81,3 +81,19 @@ class Fornecedores(models.Model):
 
     def __str__(self):
         return self.razaoSocial+" - "+self.cnpjCpf
+
+class ContasBancarias(models.Model):
+    classificacao = models.CharField(max_length=18)
+    descricao = models.TextField()
+    numeroConta = models.CharField(max_length=20)
+    numeroAgencia = models.CharField(max_length=20)
+    dataSaldoInicial = models.DateField(blank=False, null=False)
+    saldoInicial = models.CharField(max_length=14)
+    caixa = models.CharField(max_length=1)
+    banco = models.CharField(max_length=1)
+
+    def save(self):
+        self.save()
+
+    def __str__(self):
+        return self.descricao
