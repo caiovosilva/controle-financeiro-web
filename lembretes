@@ -1,0 +1,11 @@
+source myvenv/bin/activate
+python manage.py runserver
+
+
+djangogirls ==  controle-financeiro-web (pasta raiz)
+blog == app
+
+
+ao fazer alguma mudanca nos modelos ( app.models )
+Vá para o console e digite: python manage.py makemigrations app
+depois: python manage.py migrate app
