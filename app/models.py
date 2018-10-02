@@ -25,6 +25,9 @@ class Empresas(models.Model):
 
     def __str__(self):
         return self.razaoSocial
+    
+    class Meta:
+        verbose_name_plural = "Empresas"
 
 
 class Clientes(models.Model):
@@ -48,6 +51,9 @@ class Clientes(models.Model):
 
     def __str__(self):
         return self.razaoSocial+" - "+self.cnpjCpf
+    
+    class Meta:
+        verbose_name_plural = "Clientes"
 
 
 class Fornecedores(models.Model):
@@ -71,6 +77,9 @@ class Fornecedores(models.Model):
 
     def __str__(self):
         return self.razaoSocial+" - "+self.cnpjCpf
+    
+    class Meta:
+        verbose_name_plural = "Fornecedores"
 
 
 class ContasBancarias(models.Model):
@@ -85,6 +94,9 @@ class ContasBancarias(models.Model):
 
     def __str__(self):
         return self.descricao
+    
+    class Meta:
+        verbose_name_plural = "ContasBancarias"
 
 
 class PlanosDeContas(models.Model):
@@ -101,6 +113,9 @@ class PlanosDeContas(models.Model):
 
     def __str__(self):
         return self.descricao
+    
+    class Meta:
+        verbose_name_plural = "PlanosDeContas"
 
 
 class LancamentosReceber(models.Model):
@@ -113,6 +128,9 @@ class LancamentosReceber(models.Model):
 
     def __str__(self):
         return self.Cliente_Id+" valor: "+self.valorTitulo
+    
+    class Meta:
+        verbose_name_plural = "LancamentosReceber"
 
 
 class FormasPagamento(models.Model):
@@ -120,6 +138,9 @@ class FormasPagamento(models.Model):
 
     def __str__(self):
         return self.descricao
+    
+    class Meta:
+        verbose_name_plural = "FormasPagamento"
 
 
 class BaixasReceber(models.Model):
@@ -133,6 +154,9 @@ class BaixasReceber(models.Model):
 
     def __str__(self):
         return self.valorPago
+    
+    class Meta:
+        verbose_name_plural = "BaixasReceber"
 
 
 class BaixasPagar(models.Model):
@@ -147,6 +171,8 @@ class BaixasPagar(models.Model):
     def __str__(self):
         return self.valorPago
 
+    class Meta:
+        verbose_name_plural = "BaixasPagar"
 
 class LancamentosPagar(models.Model):
     Fornecedor_Id = models.ForeignKey(Fornecedores, on_delete=models.PROTECT)
@@ -158,6 +184,9 @@ class LancamentosPagar(models.Model):
 
     def __str__(self):
         return self.valorTitulo
+    
+    class Meta:
+        verbose_name_plural = "LancamentosPagar"
 
 
 class Tesouraria(models.Model):
@@ -171,3 +200,6 @@ class Tesouraria(models.Model):
     dataVencimento = models.DateField(blank=False, null=False)
     dataEmissao = models.DateField(blank=False, null=False)
     dataDisponibilidade = models.DateField(blank=False, null=False)
+    
+    class Meta:
+        verbose_name_plural = "Tesourarias"
