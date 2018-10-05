@@ -10,7 +10,9 @@ from .models import BaixasPagar
 from .models import BaixasReceber
 from .models import LancamentosPagar
 from .models import Tesouraria
+from .models import TiposPessoa
 
+admin.site.register(TiposPessoa)
 admin.site.register(Clientes)
 admin.site.register(Empresas)
 admin.site.register(Fornecedores)
