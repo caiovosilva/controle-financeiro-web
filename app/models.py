@@ -1,11 +1,19 @@
 from django.db import models
 from django.utils import timezone
 
+class TiposPessoa(models.Model):
+    descricao = models.CharField(max_length=50)
+
+    class Meta:
+        verbose_name_plural = "TiposPessoas"
+
+    def __str__(self):
+        return self.descricao
 
 class Empresas(models.Model):
     razaoSocial = models.TextField()
     identificacao = models.CharField(max_length=50)
-    tipoPessoa = models.CharField(max_length=10)
+    tipoPessoa = models.ForeignKey(TiposPessoa, on_delete=models.SET_NULL, null=True)
     cnpj = models.CharField(max_length=15)
     inscricaoEstadual = models.CharField(max_length=20)
     inscricaoMunicipal = models.CharField(max_length=20)
@@ -34,7 +42,7 @@ class Clientes(models.Model):
     razaoSocial = models.TextField()
     identificacao = models.CharField(max_length=50)
     classificacao = models.CharField(max_length=18)
-    tipoPessoa = models.CharField(max_length=10)
+    tipoPessoa = models.ForeignKey(TiposPessoa, on_delete=models.SET_NULL, null=True)
     cnpjCpf = models.CharField(max_length=15)
     inscricaoEstadual = models.CharField(max_length=20)
     inscricaoMunicipal = models.CharField(max_length=20)
@@ -46,7 +54,6 @@ class Clientes(models.Model):
     telefone = models.TextField()
     email = models.TextField()
     nomeTitular = models.TextField()
-    cpf = models.CharField(max_length=50)
     funcao = models.TextField()
 
     def __str__(self):
@@ -60,7 +67,7 @@ class Fornecedores(models.Model):
     razaoSocial = models.TextField()
     identificacao = models.CharField(max_length=50)
     classificacao = models.CharField(max_length=18)
-    tipoPessoa = models.CharField(max_length=10)
+    tipoPessoa = models.ForeignKey(TiposPessoa, on_delete=models.SET_NULL, null=True)
     cnpjCpf = models.CharField(max_length=15)
     inscricaoEstadual = models.CharField(max_length=20)
     inscricaoMunicipal = models.CharField(max_length=20)
