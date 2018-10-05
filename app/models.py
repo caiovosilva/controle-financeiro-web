@@ -5,18 +5,18 @@ class TiposPessoa(models.Model):
     descricao = models.CharField(max_length=50)
 
     class Meta:
-        verbose_name_plural = "TiposPessoas"
+        verbose_name_plural = "Tipos de Pessoas"
 
     def __str__(self):
         return self.descricao
 
 class Empresas(models.Model):
-    razaoSocial = models.TextField()
+    razao_Social = models.TextField()
     identificacao = models.CharField(max_length=50)
-    tipoPessoa = models.ForeignKey(TiposPessoa, on_delete=models.SET_NULL, null=True)
+    tipo_Pessoa = models.ForeignKey(TiposPessoa, on_delete=models.SET_NULL, null=True)
     cnpj = models.CharField(max_length=15)
-    inscricaoEstadual = models.CharField(max_length=20)
-    inscricaoMunicipal = models.CharField(max_length=20)
+    inscricao_Estadual = models.CharField(max_length=20)
+    inscricao_Municipal = models.CharField(max_length=20)
     endereco = models.TextField()
     bairro = models.CharField(max_length=50)
     municipio = models.TextField()
@@ -24,7 +24,7 @@ class Empresas(models.Model):
     uf = models.CharField(max_length=2)
     telefone = models.TextField()
     email = models.TextField()
-    nomeTitular = models.TextField()
+    nome_Titular = models.TextField()
     cpf = models.CharField(max_length=50)
     funcao = models.TextField()
 
@@ -33,19 +33,19 @@ class Empresas(models.Model):
 
     def __str__(self):
         return self.razaoSocial
-    
+
     class Meta:
         verbose_name_plural = "Empresas"
 
 
 class Clientes(models.Model):
-    razaoSocial = models.TextField()
+    razao_Social = models.TextField()
     identificacao = models.CharField(max_length=50)
     classificacao = models.CharField(max_length=18)
-    tipoPessoa = models.ForeignKey(TiposPessoa, on_delete=models.SET_NULL, null=True)
+    tipo_Pessoa = models.ForeignKey(TiposPessoa, on_delete=models.SET_NULL, null=True)
     cnpjCpf = models.CharField(max_length=15)
-    inscricaoEstadual = models.CharField(max_length=20)
-    inscricaoMunicipal = models.CharField(max_length=20)
+    inscricao_Estadual = models.CharField(max_length=20)
+    inscricao_Municipal = models.CharField(max_length=20)
     endereco = models.TextField()
     bairro = models.CharField(max_length=50)
     municipio = models.TextField()
@@ -53,24 +53,24 @@ class Clientes(models.Model):
     uf = models.CharField(max_length=2)
     telefone = models.TextField()
     email = models.TextField()
-    nomeTitular = models.TextField()
+    nome_Titular = models.TextField()
     funcao = models.TextField()
 
     def __str__(self):
         return self.razaoSocial+" - "+self.cnpjCpf
-    
+
     class Meta:
         verbose_name_plural = "Clientes"
 
 
 class Fornecedores(models.Model):
-    razaoSocial = models.TextField()
+    razao_Social = models.TextField()
     identificacao = models.CharField(max_length=50)
     classificacao = models.CharField(max_length=18)
-    tipoPessoa = models.ForeignKey(TiposPessoa, on_delete=models.SET_NULL, null=True)
+    tipo_Pessoa = models.ForeignKey(TiposPessoa, on_delete=models.SET_NULL, null=True)
     cnpjCpf = models.CharField(max_length=15)
-    inscricaoEstadual = models.CharField(max_length=20)
-    inscricaoMunicipal = models.CharField(max_length=20)
+    inscricao_Estadual = models.CharField(max_length=20)
+    inscricao_Municipal = models.CharField(max_length=20)
     endereco = models.TextField()
     bairro = models.CharField(max_length=50)
     municipio = models.TextField()
@@ -78,13 +78,13 @@ class Fornecedores(models.Model):
     uf = models.CharField(max_length=2)
     telefone = models.TextField()
     email = models.TextField()
-    nomeTitular = models.TextField()
+    nome_Titular = models.TextField()
     cpf = models.CharField(max_length=50)
     funcao = models.TextField()
 
     def __str__(self):
         return self.razaoSocial+" - "+self.cnpjCpf
-    
+
     class Meta:
         verbose_name_plural = "Fornecedores"
 
@@ -93,51 +93,51 @@ class ContasBancarias(models.Model):
     classificacao = models.CharField(max_length=18)
     descricao = models.TextField()
     numeroConta = models.CharField(max_length=20)
-    numeroAgencia = models.CharField(max_length=20)
-    dataSaldoInicial = models.DateField(blank=False, null=False)
-    saldoInicial = models.CharField(max_length=14)
-    caixa = models.CharField(max_length=1)
-    banco = models.CharField(max_length=1)
+    numero_Agencia = models.CharField(max_length=20)
+    data_Saldo_Inicial = models.DateField(blank=False, null=False)
+    saldo_Inicial = models.CharField(max_length=14)
+    caixa = models.BooleanField(default=False)
+    banco = models.BooleanField(default=False)
 
     def __str__(self):
         return self.descricao
-    
+
     class Meta:
-        verbose_name_plural = "ContasBancarias"
+        verbose_name_plural = "Contas Bancarias"
 
 
 class PlanosDeContas(models.Model):
-    ContaBancaria_Id = models.ForeignKey(ContasBancarias, on_delete=models.PROTECT)
+    Conta_Bancaria = models.ForeignKey(ContasBancarias, on_delete=models.PROTECT)
     classificacao = models.CharField(max_length=18)
-    tipoConta = models.CharField(max_length=15)
+    tipo_Conta = models.CharField(max_length=15)
     descricao = models.TextField()
-    caixa = models.CharField(max_length=1)
-    banco = models.CharField(max_length=1)
-    cliente = models.CharField(max_length=1)
-    fornecedor = models.CharField(max_length=1)
-    entradaRecurso = models.CharField(max_length=1)
-    saidaRecurso = models.CharField(max_length=1)
+    caixa = models.BooleanField(default=False)
+    banco = models.BooleanField(default=False)
+    cliente = models.BooleanField(default=False)
+    fornecedor = models.BooleanField(default=False)
+    entrada_Recurso = models.BooleanField(default=False)
+    saida_Recurso = models.BooleanField(default=False)
 
     def __str__(self):
         return self.descricao
-    
+
     class Meta:
-        verbose_name_plural = "PlanosDeContas"
+        verbose_name_plural = "Planos de Contas"
 
 
 class LancamentosReceber(models.Model):
-    Cliente_Id = models.ForeignKey(Clientes, on_delete=models.PROTECT)
-    Empresa_Id = models.ForeignKey(Empresas, on_delete=models.PROTECT)
-    dataVencimento = models.DateField(blank=False, null=False)
-    dataEmissao = models.DateField(blank=False, null=False)
-    valorTitulo = models.CharField(max_length=14)
-    numeroDocumento = models.CharField(max_length=20)
+    Cliente = models.ForeignKey(Clientes, on_delete=models.PROTECT)
+    Empresa = models.ForeignKey(Empresas, on_delete=models.PROTECT)
+    data_Vencimento = models.DateField(blank=False, null=False)
+    data_Emissao = models.DateField(blank=False, null=False)
+    valor_Titulo = models.CharField(max_length=14)
+    numero_Documento = models.CharField(max_length=20)
 
     def __str__(self):
-        return self.Cliente_Id+" valor: "+self.valorTitulo
-    
+        return self.Cliente+" valor: "+self.valorTitulo
+
     class Meta:
-        verbose_name_plural = "LancamentosReceber"
+        verbose_name_plural = "Lancamentos a Receber"
 
 
 class FormasPagamento(models.Model):
@@ -145,14 +145,14 @@ class FormasPagamento(models.Model):
 
     def __str__(self):
         return self.descricao
-    
+
     class Meta:
-        verbose_name_plural = "FormasPagamento"
+        verbose_name_plural = "Formas de Pagamento"
 
 
 class BaixasReceber(models.Model):
-    FormaPagamento_Id = models.ForeignKey(FormasPagamento, on_delete=models.PROTECT)
-    LancamentoReceber_Id = models.ForeignKey(LancamentosReceber, on_delete=models.PROTECT)
+    Forma_Pagamento = models.ForeignKey(FormasPagamento, on_delete=models.PROTECT)
+    Lancamento_Receber = models.ForeignKey(LancamentosReceber, on_delete=models.PROTECT)
     descricao = models.TextField()
     disponibilidade = models.CharField(max_length=12)
     dataBaixa = models.DateField(blank=True, null=True)
@@ -161,14 +161,14 @@ class BaixasReceber(models.Model):
 
     def __str__(self):
         return self.valorPago
-    
+
     class Meta:
-        verbose_name_plural = "BaixasReceber"
+        verbose_name_plural = "Baixas a Receber"
 
 
 class BaixasPagar(models.Model):
-    FormaPagamento_Id = models.ForeignKey(FormasPagamento, on_delete=models.PROTECT)
-    LancamentoReceber_Id = models.ForeignKey(LancamentosReceber, on_delete=models.PROTECT)
+    Forma_Pagamento = models.ForeignKey(FormasPagamento, on_delete=models.PROTECT)
+    Lancamento_Receber = models.ForeignKey(LancamentosReceber, on_delete=models.PROTECT)
     descricao = models.TextField()
     disponibilidade = models.CharField(max_length=12)
     dataBaixa = models.DateField(blank=True, null=True)
@@ -179,34 +179,34 @@ class BaixasPagar(models.Model):
         return self.valorPago
 
     class Meta:
-        verbose_name_plural = "BaixasPagar"
+        verbose_name_plural = "Baixas a Pagar"
 
 class LancamentosPagar(models.Model):
-    Fornecedor_Id = models.ForeignKey(Fornecedores, on_delete=models.PROTECT)
-    Empresa_Id = models.ForeignKey(Empresas, on_delete=models.PROTECT)
-    dataVencimento = models.DateField(blank=False, null=False)
-    dataEmissao = models.DateField(blank=False, null=False)
-    valorTitulo = models.TextField(max_length=14)
-    numeroDocumento = models.CharField(max_length=20)
+    Fornecedor = models.ForeignKey(Fornecedores, on_delete=models.PROTECT)
+    Empresa = models.ForeignKey(Empresas, on_delete=models.PROTECT)
+    data_Vencimento = models.DateField(blank=False, null=False)
+    data_Emissao = models.DateField(blank=False, null=False)
+    valor_Titulo = models.TextField(max_length=14)
+    numero_Documento = models.CharField(max_length=20)
 
     def __str__(self):
         return self.valorTitulo
-    
+
     class Meta:
-        verbose_name_plural = "LancamentosPagar"
+        verbose_name_plural = "Lancamentos a Pagar"
 
 
 class Tesouraria(models.Model):
-    Empresa_Id = models.ForeignKey(Empresas, on_delete=models.PROTECT)
-    Cliente_Id = models.ForeignKey(Clientes, on_delete=models.PROTECT)
-    PlanoDeContas_Id = models.ForeignKey(PlanosDeContas, on_delete=models.PROTECT)
-    FormaPagamento_Id = models.ForeignKey(FormasPagamento, on_delete=models.PROTECT)
-    Fornecedor_Id = models.ForeignKey(Fornecedores, on_delete=models.PROTECT)
+    Empresa = models.ForeignKey(Empresas, on_delete=models.PROTECT)
+    Cliente = models.ForeignKey(Clientes, on_delete=models.PROTECT)
+    Plano_De_Contas = models.ForeignKey(PlanosDeContas, on_delete=models.PROTECT)
+    Forma_Pagamento = models.ForeignKey(FormasPagamento, on_delete=models.PROTECT)
+    Fornecedor = models.ForeignKey(Fornecedores, on_delete=models.PROTECT)
     valor = models.CharField(max_length=14)
     numero = models.CharField(max_length=15)
-    dataVencimento = models.DateField(blank=False, null=False)
-    dataEmissao = models.DateField(blank=False, null=False)
-    dataDisponibilidade = models.DateField(blank=False, null=False)
-    
+    data_Vencimento = models.DateField(blank=False, null=False)
+    data_Emissao = models.DateField(blank=False, null=False)
+    data_Disponibilidade = models.DateField(blank=False, null=False)
+
     class Meta:
         verbose_name_plural = "Tesourarias"

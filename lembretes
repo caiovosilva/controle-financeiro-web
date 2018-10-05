@@ -4,6 +4,7 @@ python manage.py runserver
 
 djangogirls ==  controle-financeiro-web (pasta raiz)
 blog == app
+post_list == home
 
 
 ao fazer alguma mudanca nos modelos ( app.models )
