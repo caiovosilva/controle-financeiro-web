@@ -29,7 +29,7 @@ class Empresas(models.Model):
     funcao = models.TextField()
 
     def __str__(self):
-        return self.razaoSocial
+        return self.razao_Social+" - "+self.cnpj
 
     class Meta:
         verbose_name_plural = "Empresas"
@@ -54,7 +54,7 @@ class Clientes(models.Model):
     funcao = models.TextField()
 
     def __str__(self):
-        return self.razaoSocial+" - "+self.cnpjCpf
+        return self.razao_Social+" - "+self.cnpjCpf
 
     class Meta:
         verbose_name_plural = "Clientes"
@@ -80,7 +80,7 @@ class Fornecedores(models.Model):
     funcao = models.TextField()
 
     def __str__(self):
-        return self.razaoSocial+" - "+self.cnpjCpf
+        return self.razao_Social+" - "+self.cnpjCpf
 
     class Meta:
         verbose_name_plural = "Fornecedores"
@@ -131,7 +131,7 @@ class LancamentosReceber(models.Model):
     numero_Documento = models.CharField(max_length=20)
 
     def __str__(self):
-        return self.Cliente+" valor: "+self.valorTitulo
+        return self.valor_Titulo
 
     class Meta:
         verbose_name_plural = "Lancamentos a Receber"
@@ -152,12 +152,12 @@ class BaixasReceber(models.Model):
     Lancamento_Receber = models.ForeignKey(LancamentosReceber, on_delete=models.PROTECT)
     descricao = models.TextField()
     disponibilidade = models.CharField(max_length=12)
-    dataBaixa = models.DateField(blank=True, null=True)
-    valorPago = models.CharField(max_length=14)
+    data_Baixa = models.DateField(blank=True, null=True)
+    valor_Pago = models.CharField(max_length=14)
     residual = models.CharField(max_length=14)
 
     def __str__(self):
-        return self.valorPago
+        return self.valor_Pago
 
     class Meta:
         verbose_name_plural = "Baixas a Receber"
@@ -168,12 +168,12 @@ class BaixasPagar(models.Model):
     Lancamento_Receber = models.ForeignKey(LancamentosReceber, on_delete=models.PROTECT)
     descricao = models.TextField()
     disponibilidade = models.CharField(max_length=12)
-    dataBaixa = models.DateField(blank=True, null=True)
-    valorPago = models.CharField(max_length=14)
+    data_Baixa = models.DateField(blank=True, null=True)
+    valor_Pago = models.CharField(max_length=14)
     residual = models.CharField(max_length=14)
 
     def __str__(self):
-        return self.valorPago
+        return self.valor_Pago
 
     class Meta:
         verbose_name_plural = "Baixas a Pagar"
@@ -187,7 +187,7 @@ class LancamentosPagar(models.Model):
     numero_Documento = models.CharField(max_length=20)
 
     def __str__(self):
-        return self.valorTitulo
+        return self.valor_Titulo
 
     class Meta:
         verbose_name_plural = "Lancamentos a Pagar"
