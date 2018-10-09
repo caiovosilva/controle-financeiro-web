@@ -1,0 +1,38 @@
+{% extends 'app/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+{% block content %}
+    <div class="container">
+        <h2>Lançamento de Contas a Receber</h2>
+        <table class="table table-hover">
+            <thead>
+                    <tr>
+                    <th>Cliente</th>
+                    <th>Empresa</th>
+                    <th>Data de Vencimento</th>
+                    <th>Valor Titulo</th>
+                 </tr>
+            </thead>
+            <tbody>
+                {% for lancamento in lancamentos %}
+                    <tr>
+                        <td>{{ lancamento.Cliente }}</td>
+                        <td>{{ lancamento.Empresa }}</td>
+                        <td>{{ lancamento.data_Vencimento }}</td>
+                        <td>{{ lancamento.valor_Titulo }}</td>
+                        <td><a href="{% url 'lancamento_receber_edit' pk=lancamento.pk %}"><button type="button" class="glyphicon glyphicon-edit"></button></a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+</html>
