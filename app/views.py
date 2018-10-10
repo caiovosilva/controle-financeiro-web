@@ -22,3 +22,18 @@ def lancamento_receber_edit(request, pk):
     else:
         form = LancamentosReceberForm(instance=lancamento)
     return render(request, 'app/lancamento_receber_edit.html', {'form': form})
+
+def lancamento_receber_edit(request):
+    if request.method == "POST":
+        form = LancamentosReceberForm(request.POST)
+        if form.is_valid():
+            lancamento = form.save(commit=False)
+            lancamento.save()
+            return redirect('lancamento_receber_list')
+    else:
+        form = LancamentosReceberForm()
+    return render(request, 'app/lancamento_receber_edit.html', {'form': form})
+
+def delete_lancamento_receber(request,pk):
+   u = LancamentosReceber.objects.get(pk=pk).delete()
+   return redirect('lancamento_receber_list')
