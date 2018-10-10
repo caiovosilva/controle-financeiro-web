@@ -23,17 +23,19 @@
                  </tr>
             </thead>
             <tbody>
-                {% for lancamento in lancamentos %}
-                    <tr>
-                        <td>{{ lancamento.Cliente }}</td>
-                        <td>{{ lancamento.Empresa }}</td>
-                        <td>{{ lancamento.data_Vencimento }}</td>
-                        <td>{{ lancamento.valor_Titulo }}</td>
-                        <td><a href="{% url 'lancamento_receber_edit' pk=lancamento.pk %}"><button type="button" class="glyphicon glyphicon-edit"></button></a></td>
-                        <td><a href="{% url 'delete_lancamento_receber' pk=lancamento.pk %}"><button type="button" class="glyphicon glyphicon-remove"></button></a></td>
+                {% if lancamentos != null %}
+                    {% for lancamento in lancamentos %}
+                        <tr>
+                            <td>{{ lancamento.Cliente }}</td>
+                            <td>{{ lancamento.Empresa }}</td>
+                            <td>{{ lancamento.data_Vencimento }}</td>
+                            <td>{{ lancamento.valor_Titulo }}</td>
+                            <td><a href="{% url 'lancamento_receber_edit' pk=lancamento.pk %}"><button type="button" class="glyphicon glyphicon-edit"></button></a></td>
+                            <td><a href="{% url 'delete_lancamento_receber' pk=lancamento.pk %}"><button type="button" class="glyphicon glyphicon-remove"></button></a></td>
 
-                    </tr>
-                {% endfor %}
+                        </tr>
+                    {% endfor %}
+                {% endif %}
             </tbody>
         </table>
         <a href="{% url 'relatorio_lancamentos_receber'%}"><button type="button" class="glyphicon glyphicon-file"></button></a>
